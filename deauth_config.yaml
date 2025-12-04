@@ -1,0 +1,18 @@
+detector:
+  interface: "wlan0mon"
+  default_duration: 300  # segundos
+  alert_threshold: 10    # deauths por minuto
+  
+output:
+  directory: "./deauth_logs"
+  formats: ["csv", "json", "txt"]
+  
+monitoring:
+  check_interval: 5      # segundos
+  log_level: "INFO"
+  
+security:
+  suspicious_patterns:
+    - high_frequency: 50    # deauths/minuto
+    - targeted_attack: 100  # deauths a un mismo AP
+    - broadcast_attack: 20  # deauths broadcast
